@@ -5,7 +5,7 @@ It is painful to carefully align your mouse when doing some sort of pixel-perfec
 
 The aim of this project is simple - now you can slow your mouse down by simply holding a modifier key! In this way, you can easily align your mouse to a certain pixel.
 
-> Note: This application is Windows only. It works by changing the mouse sensitivity settings, so won't work for a touchpad.
+> Note: This application is Windows only. It works by changing the mouse sensitivity settings, so won't work for a touchpad. It should also not affect games that are using raw mouse input.
 
 ## Usage
 
