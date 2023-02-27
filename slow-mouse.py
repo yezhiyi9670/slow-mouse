@@ -12,7 +12,7 @@ import sys
 
 version = '0.1.1'
 
-'Self detect'
+# ======= Self detect =======
 class SelfDetect:
 	path: str = ''
 	def detect(self):
@@ -45,7 +45,7 @@ if selfDetect.detect():
 	exit(-1)
 selfDetect.write()
 
-'Config utils'
+# ======= Config utils =======
 class Config:
 	'FIle path'
 	path: str = ''
@@ -73,12 +73,12 @@ class Config:
 
 configManager = Config()
 
-'Mouse speed'
+# ======= Mouse speed =======
 def change_speed(speed): 
 	set_mouse_speed = 113 # 0x0071 for SPI_SETMOUSESPEED 
 	ctypes.windll.user32.SystemParametersInfoA(set_mouse_speed, 0, speed, 0) 
 
-'Keyboard detect'
+# ======= Keyboard detect =======
 class KeyboardListener:
 	keyState = False
 	listener: keyboard.Listener = None
@@ -94,6 +94,7 @@ class KeyboardListener:
 			'RightShift': keyboard.Key.shift_r,
 			'LeftAlt': keyboard.Key.alt_l,
 			'RightAlt': keyboard.Key.alt_gr,
+			'RightAlt2': keyboard.Key.alt_r,
 			'LeftCtrl': keyboard.Key.ctrl_l,
 			'RightCtrl': keyboard.Key.ctrl_r
 		}
@@ -116,7 +117,7 @@ class KeyboardListener:
 
 keyboardListener = KeyboardListener()
 
-'Icon, also the main loop.'
+# ======= Icon, also main loop =======
 def icon_loop():
 	def handle_quit(icon: pystray.Icon):
 		global selfDetect
@@ -142,15 +143,15 @@ def icon_loop():
 		Menu.SEPARATOR,
 		MenuItem('Standard Speed', Menu(*map(
 			lambda i: MenuItem(str(i), action=lambda item: set_standard_speed(i), checked=lambda item: configManager.get('standardSpeed') == i),
-			range(1, 19)
+			range(1, 21)
 		))),
 		MenuItem('Low Speed', Menu(*map(
 			lambda i: MenuItem(str(i), action=lambda item: set_slow_speed(i), checked=lambda item: configManager.get('lowSpeed') == i),
-			range(1, 10)
+			range(1, 21)
 		))),
 		MenuItem('Modifier Key', Menu(*map(
 			lambda k: MenuItem(k, action=lambda item: set_key(k), checked=lambda item: configManager.get('key') == k),
-			['LeftShift', 'LeftCtrl', 'LeftAlt', 'RightShift', 'RightCtrl', 'RightAlt']
+			['LeftShift', 'LeftCtrl', 'LeftAlt', 'RightShift', 'RightCtrl', 'RightAlt', 'RightAlt2']
 		))),
 		Menu.SEPARATOR,
 		MenuItem('Exit', action=handle_quit),
