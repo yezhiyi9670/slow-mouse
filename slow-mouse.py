@@ -10,7 +10,7 @@ import psutil
 import ctypes
 import sys
 
-version = '0.1.1'
+version = '0.1.2'
 
 # ======= Self detect =======
 class SelfDetect:
@@ -45,6 +45,19 @@ if selfDetect.detect():
 	exit(-1)
 selfDetect.write()
 
+# ======= Mouse speed =======
+def change_speed(speed): 
+	set_mouse_speed = 113 # 0x0071 for SPI_SETMOUSESPEED 
+	ctypes.windll.user32.SystemParametersInfoA(set_mouse_speed, 0, speed, 0) 
+def get_speed():
+	get_mouse_speed = 112
+	ptr = ctypes.c_void_p(1)
+	ctypes.windll.user32.SystemParametersInfoA(get_mouse_speed, 0, ctypes.byref(ptr), 0)
+	val = ptr.value
+	if(val < 1): return 1
+	if(val > 20): return 20
+	return val
+
 # ======= Config utils =======
 class Config:
 	'FIle path'
@@ -56,7 +69,7 @@ class Config:
 		self.path = os.path.join('', 'config.json')
 		if not os.path.exists(self.path):
 			open(self.path, 'w').write(json.dumps({
-				'standardSpeed': 10,
+				'standardSpeed': get_speed(),
 				'lowSpeed': 1,
 				'key': 'RightAlt'
 			}))
@@ -72,11 +85,6 @@ class Config:
 		self.data[key] = val
 
 configManager = Config()
-
-# ======= Mouse speed =======
-def change_speed(speed): 
-	set_mouse_speed = 113 # 0x0071 for SPI_SETMOUSESPEED 
-	ctypes.windll.user32.SystemParametersInfoA(set_mouse_speed, 0, speed, 0) 
 
 # ======= Keyboard detect =======
 class KeyboardListener:
@@ -141,9 +149,13 @@ def icon_loop():
 	menu = (
 		MenuItem('Slow Mouse v' + version, action=lambda item: None),
 		Menu.SEPARATOR,
-		MenuItem('Standard Speed', Menu(*map(
-			lambda i: MenuItem(str(i), action=lambda item: set_standard_speed(i), checked=lambda item: configManager.get('standardSpeed') == i),
-			range(1, 21)
+		MenuItem('Standard Speed', Menu(*(
+			list(map(
+				lambda i: MenuItem(str(i), action=lambda item: set_standard_speed(i), checked=lambda item: configManager.get('standardSpeed') == i),
+				range(1, 21)
+			)) + [
+				MenuItem('Auto Detect', lambda item: set_standard_speed(get_speed()))
+			]
 		))),
 		MenuItem('Low Speed', Menu(*map(
 			lambda i: MenuItem(str(i), action=lambda item: set_slow_speed(i), checked=lambda item: configManager.get('lowSpeed') == i),
