@@ -1,6 +1,8 @@
 Slow Mouse
 ====
 
+> [Buy me a coffee](https://afdian.net/a/yezhiyi9670) if you like this project.
+
 It is painful to carefully align your mouse when doing some sort of pixel-perfect dragging (for example when taking screenshots or drawing with mspaint), isn't it?
 
 The aim of this project is simple - now you can slow your mouse down by simply holding a modifier key! In this way, you can easily align your mouse to a certain pixel.
