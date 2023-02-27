@@ -10,13 +10,13 @@ import psutil
 import ctypes
 import sys
 
-version = '0.1.0'
+version = '0.1.1'
 
 'Self detect'
 class SelfDetect:
 	path: str = ''
 	def detect(self):
-		self.path = os.path.join(os.path.dirname(__file__), 'pid.log')
+		self.path = os.path.join('', 'pid.log')
 		if os.path.exists(self.path):
 			fp = open(self.path,'r')
 			pid = fp.read().strip()
@@ -53,7 +53,7 @@ class Config:
 	data = {}
 	'Read or initialize data'
 	def __init__(self):
-		self.path = os.path.join(os.path.dirname(__file__), 'config.json')
+		self.path = os.path.join('', 'config.json')
 		if not os.path.exists(self.path):
 			open(self.path, 'w').write(json.dumps({
 				'standardSpeed': 10,
