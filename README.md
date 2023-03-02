@@ -3,9 +3,12 @@ Slow Mouse
 
 > [Buy me a coffee](https://afdian.net/a/yezhiyi9670) if you like this project.
 
-It is painful to carefully align your mouse when doing some sort of pixel-perfect dragging (for example when taking screenshots or drawing with mspaint), isn't it?
+Just as the name suggests, the aim of this project is simple - now you can slow your mouse down by simply holding a modifier key. In this way, you can easily align your mouse to a certain pixel. It's useful under circumstances such as:
 
-The aim of this project is simple - now you can slow your mouse down by simply holding a modifier key! In this way, you can easily align your mouse to a certain pixel.
+- Dragging some slider such as the volume slider, and trying to obtain an accurate value.
+- Trying to resize a window or a box but simply having trouble aligning the mouse to the anchor.
+- Trying to select an accurate rectangle of the screen for screenshot or capturing.
+- Trying to drag a piece of image to an accurate place. (it's tencent's captcha, isn't it?)
 
 > Note: This application is Windows only. It works by changing the mouse sensitivity settings, so won't work for a touchpad. It should also not affect games that are using raw mouse input.
 
