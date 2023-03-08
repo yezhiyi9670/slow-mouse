@@ -10,7 +10,7 @@ import psutil
 import ctypes
 import sys
 
-version = '0.1.3'
+version = '0.1.4'
 
 # ======= Self detect =======
 class SelfDetect:
@@ -43,7 +43,7 @@ class SelfDetect:
 selfDetect = SelfDetect()
 # if selfDetect.detect():
 # 	exit(-1)
-selfDetect.write()
+# selfDetect.write()
 
 # ======= Mouse speed =======
 def change_speed(speed): 
@@ -129,7 +129,7 @@ keyboardListener = KeyboardListener()
 def icon_loop():
 	def handle_quit(icon: pystray.Icon):
 		global selfDetect
-		selfDetect.clean()
+		# selfDetect.clean()
 		keyboardListener.stop()
 		icon.stop()
 	def set_standard_speed(val: int):
