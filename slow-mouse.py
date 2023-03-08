@@ -10,7 +10,7 @@ import psutil
 import ctypes
 import sys
 
-version = '0.1.2'
+version = '0.1.3'
 
 # ======= Self detect =======
 class SelfDetect:
@@ -41,8 +41,8 @@ class SelfDetect:
 			os.unlink(self.path)
 
 selfDetect = SelfDetect()
-if selfDetect.detect():
-	exit(-1)
+# if selfDetect.detect():
+# 	exit(-1)
 selfDetect.write()
 
 # ======= Mouse speed =======
