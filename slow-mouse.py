@@ -1,6 +1,5 @@
 import threading
 from pynput import keyboard
-from tkinter import Tk
 import pystray
 from PIL import Image
 from pystray import MenuItem, Menu
@@ -10,7 +9,7 @@ import psutil
 import ctypes
 import sys
 
-version = '0.1.4'
+version = '0.1.5'
 
 # ======= Self detect =======
 class SelfDetect:
@@ -149,7 +148,7 @@ def icon_loop():
 	menu = (
 		MenuItem('Slow Mouse v' + version, action=lambda item: None),
 		Menu.SEPARATOR,
-		MenuItem('Standard Speed', Menu(*(
+		MenuItem('&Standard Speed', Menu(*(
 			list(map(
 				lambda i: MenuItem(str(i), action=lambda item: set_standard_speed(i), checked=lambda item: configManager.get('standardSpeed') == i),
 				range(1, 21)
@@ -157,16 +156,16 @@ def icon_loop():
 				MenuItem('Auto Detect', lambda item: set_standard_speed(get_speed()))
 			]
 		))),
-		MenuItem('Low Speed', Menu(*map(
+		MenuItem('&Low Speed', Menu(*map(
 			lambda i: MenuItem(str(i), action=lambda item: set_slow_speed(i), checked=lambda item: configManager.get('lowSpeed') == i),
 			range(1, 21)
 		))),
-		MenuItem('Modifier Key', Menu(*map(
+		MenuItem('&Modifier Key', Menu(*map(
 			lambda k: MenuItem(k, action=lambda item: set_key(k), checked=lambda item: configManager.get('key') == k),
 			['LeftShift', 'LeftCtrl', 'LeftAlt', 'RightShift', 'RightCtrl', 'RightAlt', 'RightAlt2']
 		))),
 		Menu.SEPARATOR,
-		MenuItem('Exit', action=handle_quit),
+		MenuItem('&Quit', action=handle_quit),
 	)
 	if getattr(sys, 'frozen', False):
 		image = Image.open(os.path.join(sys._MEIPASS, "icon/main.png"))
