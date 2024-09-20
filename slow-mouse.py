@@ -9,7 +9,18 @@ import psutil
 import ctypes
 import sys
 
-version = '0.1.5'
+version = '0.1.6'
+
+def is_packaged():
+	if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+		return True
+	else:
+		return False
+
+def get_program_dir():
+    return os.path.dirname(sys.executable if is_packaged() else __file__)
+
+os.chdir(get_program_dir())
 
 # ======= Self detect =======
 class SelfDetect:
@@ -179,4 +190,4 @@ def icon_loop():
 
 'Start'
 if __name__ == '__main__':
-	icon_loop()
+    icon_loop()
