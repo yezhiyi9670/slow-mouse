@@ -18,8 +18,6 @@ To download prebuilt binaries, go to the Github releases page.
 
 Launch the application and you will see a tray icon. Right click it to modify the settings.
 
-Important: This app auto-detects your current mouse speed settings on first launch. When you change this (using Windows control panel) in the future, you need to click `Standard Speed > Auto Detect` to update it.
-
 ## Start on boot
 
 This application does NOT start on boot automatically. You can configure it to do so by [dropping its shortcut into the Startup folder](https://cn.bing.com/search?q=dropping+shortcut+into+startup+folder).
