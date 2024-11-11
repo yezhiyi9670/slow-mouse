@@ -3,3 +3,4 @@
 /slow-mouse.spec
 /config.json
 /pid.log
+__pycache__
